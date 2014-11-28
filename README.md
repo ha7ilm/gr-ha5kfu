@@ -5,6 +5,14 @@ This is a set of GNU Radio blocks written by Andras Retzler, HA7ILM &lt;randras@
 
 These blocks are not perfect and have quite limited functionality, just enough for testing <a href="http://github.com/simonyiszk/csdr">libcsdr</a>.
 
+Run to build:
+
+	mkdir build
+	cd build
+	cmake ..
+	make
+	sudo make install
+
 ## Execute External Process
 
 - It spawns an external process with a given command-line. (You can use shell pipelines.)
