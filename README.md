@@ -5,7 +5,7 @@ This is a set of GNU Radio blocks written by Andras Retzler, HA7ILM &lt;randras@
 
 These blocks are not perfect and have quite limited functionality, just enough for testing <a href="http://github.com/simonyiszk/csdr">libcsdr</a>.
 
-Run to build:
+The blocks were tested against GNU Radio v3.7.5-23-g1edeff17. To build:
 
 	mkdir build
 	cd build
