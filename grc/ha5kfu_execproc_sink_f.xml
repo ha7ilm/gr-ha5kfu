@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<block>
+  <name>Execute External Process Sink</name>
+  <key>ha5kfu_execproc_sink_f</key>
+  <category>HA5KFU</category>
+  <import>import ha5kfu</import>
+  <make>ha5kfu.execproc_sink_f($commandline)</make>
+  <param>
+    <name>Command line</name>
+    <key>commandline</key>
+    <type>string</type>
+  </param>
+
+  <sink>
+    <name>in</name>
+    <type>float</type>
+  </sink>
+
+</block>

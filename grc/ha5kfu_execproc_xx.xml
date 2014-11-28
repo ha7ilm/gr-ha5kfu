@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<block>
+  <name>Execute External Process</name>
+  <key>ha5kfu_execproc_xx</key>
+  <category>HA5KFU</category>
+  <import>import ha5kfu</import>
+  <make>ha5kfu.execproc_$(type.fcn)($commandline)</make>
+  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
+       Sub-nodes:
+       * name
+       * key (makes the value accessible as $keyname, e.g. in the make node)
+       * type -->
+	<param>
+		<name>Type</name>
+		<key>type</key>
+		<type>enum</type>
+		<option>
+			<name>Complex -&gt; Complex</name>
+			<key>cc</key>
+			<opt>fcn:cc</opt>
+			<opt>input:complex</opt>
+			<opt>output:complex</opt>
+		</option>
+		<option>
+			<name>Complex -&gt; Float</name>
+			<key>cf</key>
+			<opt>fcn:cf</opt>
+			<opt>input:complex</opt>
+			<opt>output:float</opt>
+		</option>
+		<option>
+			<name>Float -&gt; Float</name>
+			<key>ff</key>
+			<opt>fcn:ff</opt>
+			<opt>input:float</opt>
+			<opt>output:float</opt>
+		</option>
+	</param>
+  <param>
+    <name>Command line</name>
+    <key>commandline</key>
+    <type>string</type>
+  </param>
+
+  <!-- Make one 'sink' node per input. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <sink>
+    <name>in</name>
+    <type>$type.input</type>
+  </sink>
+
+  <!-- Make one 'source' node per output. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <source>
+    <name>out</name>
+    <type>$type.output</type>
+  </source>
+</block>

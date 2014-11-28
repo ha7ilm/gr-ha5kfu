@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<block>
+  <name>Show Min/Max Value in Console</name>
+  <key>ha5kfu_debug_minmax_f</key>
+  <category>HA5KFU</category>
+  <import>import ha5kfu</import>
+  <make>ha5kfu.debug_minmax_f($samplecount)</make>
+  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
+       Sub-nodes:
+       * name
+       * key (makes the value accessible as $keyname, e.g. in the make node)
+       * type -->
+  <param>
+    <name>Unused Parameter #1</name>
+    <key>samplecount</key>
+    <type>int</type>
+  </param>
+
+  <!-- Make one 'sink' node per input. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <sink>
+    <name>in</name>
+    <type>float</type>
+  </sink>
+
+</block>

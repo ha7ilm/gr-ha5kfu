@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<block>
+  <name>AGC2 Debug</name>
+  <key>ha5kfu_agc2_debug</key>
+  <category>HA5KFU</category>
+  <import>import ha5kfu</import>
+  <make>ha5kfu.agc2_debug($attack_rate, $decay_rate, $ref, $gain, $max_gain)</make>
+
+  <param><name>Attack Rate</name><key>attack_rate</key><type>float</type></param>
+  <param><name>Decay Rate</name><key>decay_rate</key><type>float</type></param>
+  <param><name>Reference</name><key>ref</key><type>float</type></param>
+  <param><name>Gain</name><key>gain</key><type>float</type></param>
+  <param><name>Max. Gain</name><key>max_gain</key><type>float</type></param>
+
+  <sink>
+    <name>in</name>
+    <type>float</type>
+  </sink>
+
+  <source>
+    <name>out</name>
+    <type>float</type>
+  </source>
+</block>
