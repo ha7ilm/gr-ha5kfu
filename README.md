@@ -12,6 +12,7 @@ The blocks were tested against GNU Radio v3.7.5-23-g1edeff17. To build:
 	cmake ..
 	make
 	sudo make install
+	sudo ldconfig
 
 ## Execute External Process
 
