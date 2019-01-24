@@ -24,6 +24,7 @@ include(GrPlatform) #define LIB_SUFFIX
 
 include_directories(${Boost_INCLUDE_DIR})
 link_directories(${Boost_LIBRARY_DIRS})
+
 list(APPEND ha5kfu_sources
     execproc_cf_impl.cc
 	popen2.cc
@@ -33,18 +34,27 @@ list(APPEND ha5kfu_sources
     agc2_debug_impl.cc
     execproc_sink_f_impl.cc )
 
+set(ha5kfu_sources "${ha5kfu_sources}" PARENT_SCOPE)
+if(NOT ha5kfu_sources)
+	MESSAGE(STATUS "No C++ sources... skipping lib/")
+	return()
+endif(NOT ha5kfu_sources)
+
 add_library(gnuradio-ha5kfu SHARED ${ha5kfu_sources})
-target_link_libraries(gnuradio-ha5kfu ${Boost_LIBRARIES} ${GNURADIO_RUNTIME_LIBRARIES})
+target_link_libraries(gnuradio-ha5kfu ${Boost_LIBRARIES} ${GNURADIO_ALL_LIBRARIES})
 set_target_properties(gnuradio-ha5kfu PROPERTIES DEFINE_SYMBOL "gnuradio_ha5kfu_EXPORTS")
+
+if(APPLE)
+    set_target_properties(gnuradio-ha5kfu PROPERTIES
+        INSTALL_NAME_DIR "${CMAKE_INSTALL_PREFIX}/lib"
+    )
+endif(APPLE)
 
 ########################################################################
 # Install built library files
 ########################################################################
-install(TARGETS gnuradio-ha5kfu
-    LIBRARY DESTINATION lib${LIB_SUFFIX} # .so/.dylib file
-    ARCHIVE DESTINATION lib${LIB_SUFFIX} # .lib file
-    RUNTIME DESTINATION bin              # .dll file
-)
+include(GrMiscUtils)
+GR_LIBRARY_FOO(gnuradio-ha5kfu RUNTIME_COMPONENT "ha5kfu_runtime" DEVEL_COMPONENT "ha5kfu_devel")
 
 ########################################################################
 # Build and register unit test
@@ -69,3 +79,10 @@ target_link_libraries(
 )
 
 GR_ADD_TEST(test_ha5kfu test-ha5kfu)
+
+########################################################################
+# Print summary
+########################################################################
+message(STATUS "Using install prefix: ${CMAKE_INSTALL_PREFIX}")
+message(STATUS "Building for version: ${VERSION} / ${LIBVER}")
+
